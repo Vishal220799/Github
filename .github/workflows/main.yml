@@ -1,4 +1,4 @@
-name: hello vishal
+name: Hello Vishal
 
 on:
   workflow_dispatch:
@@ -8,10 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say hello to user
+      - name: Say hello
         run: echo "HELLO VISHAL"
 
-      - name: Test VISHAL_SECRET
-        run: echo "Secret is available"
+      - name: Create secret file
         env:
-          MY_SECRET: ${{ secrets.VISHAL_SECRET }}
+          SECRET_CONTENT: ${{ secrets.VISHAL_SECRET }}
+        run: |
+          printf '%s\n' "$SECRET_CONTENT" > secret.env
+
+      - name: Verify secret file exists
+        run: |
+          test -f secret.env
+          echo "Secret file created successfully"
