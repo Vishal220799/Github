@@ -1,0 +1,17 @@
+name: hello vishal
+
+on:
+  workflow_dispatch:
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say hello to user
+        run: echo "HELLO VISHAL"
+
+      - name: Test VISHAL_SECRET
+        run: echo "Secret is available"
+        env:
+          MY_SECRET: ${{ secrets.VISHAL_SECRET }}
